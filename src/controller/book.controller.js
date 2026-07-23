@@ -3,7 +3,7 @@ import * as service from "../service/book.service.js"
 export const addBook =async (req, res)=> {
  const book=await service.addBook(req.body)
     if(book){
-        return res.status(200).message(true);
+        return res.status(200).send(true);
     }
 }
 
@@ -17,7 +17,7 @@ export const findBookById = async (req, res) => {
 export const removeBook = async (req, res) => {
     const book = await service.removeBook(req.params.isbn)
     if (book) {
-        return res.status(200).message(book)
+        return res.status(200).json(book)
     }
 }
 
