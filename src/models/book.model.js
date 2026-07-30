@@ -1,15 +1,12 @@
-import {Schema, model} from "mongoose";
+import {sequelize} from "../configurethion/database.js";
+import {DataTypes} from "sequelize";
 
-export const BookSchema = new Schema({
-    isbn: {type: String, required: true},
-    title: {type: String, required: true},
-    authors:{
-        type: [String],
-        default: ['author']
-    },
-    publisher: {type: String, required: true},
-},{
-    versionKey: false
+
+export const Book = sequelize.define('Book',{
+    isbn: {type: DataTypes.STRING, allowNull: false, primaryKey: true, validate: {notEmpty: true}},
+    title: {type: DataTypes.STRING, allowNull: false, validate: {notEmpty: true}},
+}, {
+    tableName: 'books',
 })
 
-export default model('Book', BookSchema, 'book');
+export default Book;
