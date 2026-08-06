@@ -44,7 +44,7 @@ export const updateBookTitle = async (req, res, next) => {
 
 export const findBooksByAuthor = async (req, res, next) => {
     try {
-        const books = await service.findBooksByAuthor(req.params.authorName)
+        const books = await service.findBooksByAuthor(req.params.author)
         if (books) {
             return res.status(200).json(books)
         }
@@ -77,7 +77,7 @@ export const findBookAuthors = async (req, res, next) => {
 
 export const findBookPublishersByAuthor = async (req, res, next) => {
     try {
-        const publishers = await service.findBookPublishersByAuthor(req.params.authorName)
+        const publishers = await service.findBookPublishersByAuthor(req.params.author)
         if (publishers) {
             return res.status(200).json(publishers)
         }
@@ -90,7 +90,7 @@ export const removeAuthor = async (req, res, next) => {
     try {
         const author = await service.removeAuthor(req.params.author)
         if (author) {
-            return res.status(200).message(author)
+            return res.status(200).json(author)
         }
     } catch (e) {
         return next(e)

@@ -11,10 +11,8 @@ export const updateBookTitle = async (id, title, options) => {
     return book.save(options);
 }
 
-export const findBooksByAuthor = async (author, options = {}) => {
-    return await Book.findAll({where: {author: author}, ...options});
-};
-
 export const findBooksByPublisher = async (publisher, options = {}) => {
     return await Book.findAll({where: {publisher: publisher}, ...options});
 }
+
+export const booksSummary = async (field, functionName, options={}) => await Book.aggregate(field, functionName, options);
